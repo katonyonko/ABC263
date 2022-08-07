@@ -19,10 +19,7 @@ for __ in range(case_no):
   A=list(map(int,input().split()))
   dp=[0]*N
   adp=[0]*(N+1)
-  deno=1
-  for i in range(N-1):
-    deno=(deno*A[i])%mod
   for i in reversed(range(N-1)):
-    dp[i]=((adp[i+1]-adp[i+A[i]+1])*pow(A[i],mod-2,mod)+deno+deno*pow(A[i],mod-2,mod))%mod
+    dp[i]=((adp[i+1]-adp[i+A[i]+1])*pow(A[i],mod-2,mod)+1+pow(A[i],mod-2,mod))%mod
     adp[i]=(adp[i+1]+dp[i])%mod
-  print(dp[0]*pow(deno,mod-2,mod)%mod)
+  print(dp[0]%mod)
